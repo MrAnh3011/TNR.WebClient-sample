@@ -1,0 +1,61 @@
+.table-header {
+  background-color: #327ebd;
+  color: white;
+  padding: 0 5px;
+  height: 50px;
+}
+.mat-header-row {
+  background-color: #fafafa;
+}
+.table-container {
+  padding: 0x;
+}
+.table-component-holder {
+  border: 1px solid #327ebd;
+  background-color: white;
+}
+table {
+  width: 100%;
+}
+td.mat-cell,
+td.mat-footer-cell,
+th.mat-header-cell {
+  border-bottom-width: 0px;
+  border-bottom-style: none;
+}
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+.form-content {
+  padding: 10px;
+}
+.width {
+  width: 100%;
+}
+.widgetHolder {
+  margin: 20px 20px 20px 20px;
+  background-color: white;
+}
+
+:host #discipline-qe /deep/ .ql-container {
+  height: 500px;
+}
+.input-container {
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mat-dialog-container {
+  padding: 10px;
+}
+.dialog-content{
+  max-height: 75vh;
+}
+.page-title{
+  font-size: 19px;
+  font-weight: bold
+}

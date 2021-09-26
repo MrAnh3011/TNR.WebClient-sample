@@ -1,0 +1,9 @@
+<form [formGroup]="ccbValue" (ngSubmit)="onSubmit()">
+    <mat-form-field class="widget" appearance="outline">
+        <mat-label>{{field.FldLabel}}<i *ngIf="field.Required=='T'"> *</i></mat-label>
+        <mat-select [formControlName]="field.FldName">
+            <mat-option *ngFor="let i of listSources" [value]="i">{{i.Text}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError(field.FldName, 'required')">{{field.FldLabel}} không được để trống</mat-error>
+    </mat-form-field>
+</form>

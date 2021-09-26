@@ -1,0 +1,37 @@
+.example-tree-invisible {
+    display: none;
+  }
+  
+  .example-tree ul,
+  .example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+  }
+
+.mat-tree-node {
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+  &:hover {
+    background: #b7e4ff;
+  }
+  .mat-checkbox {
+    position: absolute;
+    left: 10px;
+    z-index: 0;
+  }
+  .text-item {
+    display: flex;
+    justify-content: flex-start;
+    text-align: center;
+    padding-left: 35px;
+    width: 100%;
+    float: left;
+    z-index: 2;
+  }
+}
+
+.checked {
+  background: #b7e4ff;
+}

@@ -1,0 +1,85 @@
+<form (submit)="onSubmit()" [formGroup]="simpleFormGroup">
+  <div mat-dialog-title>
+    <div flexColumn>
+      <span class="page-title">{{pageTitle}}</span>
+      <button mat-raised-button type="submit" [disabled]="loading" color="accent" class="mat-headline"
+        style="float: right;margin-left: 5px;">
+        <mat-icon>save</mat-icon>
+        Lưu lại
+      </button>
+      <button mat-raised-button mat-dialog-close type="button" color="default" class="mat-headline"
+        style="float: right;">
+        <mat-icon>close</mat-icon>
+        Đóng
+      </button>
+    </div>
+  </div>
+  <mat-dialog-content class="dialog-content">
+    <div class="form-content">
+      <div *ngFor="let item of fields" class="width">
+        <div class="width" *ngIf="fieldProperties[item.FldName + '.Visible'] != 'Y' && ready">
+          <!--Control Label-->
+          <div *ngIf="item.CtrlType==='LBL' && item.Visible!='N'" class="width">
+            <mat-label><b>{{item.FldLabel}}</b></mat-label>
+            <p>{{item.DefaultValue}}</p>
+          </div>
+          <!--Control Text Input-->
+          <mat-form-field *ngIf="item.CtrlType==='CTI' && item.Visible!='N'" appearance="outline" class="width">
+            <mat-label>{{item.FldLabel}}</mat-label>
+            <input type="text" matInput [formControlName]="item.FldName" [disabled]="item.ReadOnly=='Y'"
+              [required]="item.Required=='T'" />
+            <mat-error *ngIf="hasError(item.FldName, 'required')">{{item.FldLabel}} không được để trống</mat-error>
+          </mat-form-field>
+          <!--Control Text Area-->
+          <mat-form-field *ngIf="item.CtrlType==='CMT' && item.Visible!='N'" appearance="outline" class="width">
+            <textarea rows="4" [formControlName]="item.FldName" matInput [placeholder]="item.FldLabel"
+              [required]="item.Required=='T'" [disabled]="item.ReadOnly=='Y'"></textarea>
+            <mat-error *ngIf="hasError(item.FldName, 'required')">{{item.FldLabel}} không được để trống</mat-error>
+          </mat-form-field>
+
+          <!--Control Number Input-->
+          <mat-form-field *ngIf="item.CtrlType==='CNI' && item.Visible!='N'" appearance="outline" class="width">
+            <mat-label>{{item.FldLabel}}</mat-label>
+            <input type="number" matInput [placeholder]="item.FldLabel" [formControlName]="item.FldName"
+              [disabled]="item.ReadOnly=='Y'" [required]="item.Required=='T'" />
+            <mat-error *ngIf="hasError(item.FldName, 'required')">{{item.FldLabel}} không được để trống</mat-error>
+          </mat-form-field>
+
+          <!--Control Date Picker-->
+          <control-datepicker *ngIf="item.CtrlType==='CDT' && item.Visible!='N'" [formControlName]="item.FldName"
+            appearance="outline" class="width" [field]="item">
+          </control-datepicker>
+
+          <!--Control Combobox-->
+          <div class="width" *ngIf="item.CtrlType==='CCB'">
+            <control-combobox [formControlName]="item.FldName" appearance="outline" class="width" [field]="item"
+              [listSources]="listSources[item.FldName]"></control-combobox>
+          </div>
+
+
+          <!--Control Rich Text-->
+          <div *ngIf="item.CtrlType==='CRT' && item.Visible!='N'">
+            <mat-label>{{item.FldLabel}}</mat-label>
+            <quill-editor #disciplineQE id="discipline-qe" [formControlName]="item.FldName">
+            </quill-editor>
+          </div>
+
+          <!--Control Rich Report Text-->
+          <div *ngIf="item.CtrlType==='RPT' && item.Visible!='N'">
+            <control-rich-text [formControlName]="item.FldName" class="width" [field]="item">
+            </control-rich-text>
+          </div>
+          <!--Control Lookup-->
+          <control-lookup *ngIf="item.CtrlType==='MCB' && item.Visible!='N'" [formControlName]="item.FldName"
+            class="width" [field]="item">
+          </control-lookup>
+
+          <!--Control Chat UI-->
+          <control-chat *ngIf="item.CtrlType==='CHAT' && item.Visible!='N'" [formControlName]="item.FldName"
+            class="width" [field]="item">
+          </control-chat>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</form>

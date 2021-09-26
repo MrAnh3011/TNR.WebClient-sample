@@ -1,0 +1,24 @@
+<div mat-dialog-title>
+  <div flexColumn>
+    <span class="page-title">{{pageTitle}}</span>
+  </div>
+</div>
+<mat-dialog-content class="dialog-content">
+  <mat-list class="fw list-exec">
+    <mat-list-item *ngFor="let item of resultObject"
+      class="fw exec-item alert alert-border-left alert-primary light {{item.status || ''}}">
+      <span class="fw title-text">{{warningText}}</span>
+      <span class="fw"><i>{{item.message? item.message : 'Đang chờ thực hiện...'}}</i></span>
+    </mat-list-item>
+  </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="default">
+    <mat-icon>cancel</mat-icon>
+    Bỏ qua
+  </button>
+  <button mat-raised-button color="accent" (click)="onSubmit()" [disabled]="loading">
+    <mat-icon>check_circle</mat-icon>
+    Đồng ý
+  </button>
+</mat-dialog-actions>

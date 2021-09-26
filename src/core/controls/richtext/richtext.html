@@ -1,0 +1,12 @@
+<form [formGroup]="reportTextModel" class="widget" >
+    <div>
+        <mat-label>{{field.FldLabel}}</mat-label>
+        <div style="float: left;width: 100%;">
+            <button type="button" mat-button *ngFor="let i of tempFields" (click)="onSelectText(i.Value)">{{i.Text}}</button>
+        </div>
+        <div>
+            <quill-editor (onEditorCreated)="created($event)" #quill id="discipline-qe" [formControlName]="field.FldName">
+            </quill-editor>
+        </div>
+    </div>
+</form>

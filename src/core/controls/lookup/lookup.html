@@ -1,0 +1,19 @@
+<form [formGroup]="modelLookup" class="widget" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-chip-list" appearance="outline">
+        <mat-label>{{field.FldLabel}}</mat-label>
+        <mat-chip-list #chipList aria-label="selection">
+            <mat-chip *ngFor="let i of lookupData" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(i)">
+                {{i.Text}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input [matChipInputFor]="chipList" readonly [formControl]="field.FldName" />
+            <button color="default" (click)="clear()">
+                <mat-icon>clear</mat-icon>
+            </button>
+            <button color="primary" (click)="onSelectItems()">
+                <mat-icon>more</mat-icon>
+            </button>
+        </mat-chip-list>
+    </mat-form-field>
+</form>

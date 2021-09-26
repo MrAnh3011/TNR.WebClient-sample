@@ -1,0 +1,16 @@
+<div class="fw">
+    <div class="fw">
+        <input *ngIf="field.CtrlType=='CTI'" class="form-control" (input)="valueChanged($event.target.value)" />
+
+        <input *ngIf="field.CtrlType=='CNI'" class="form-control" type="number" (input)="valueChanged($event.target.value)"  />
+
+        <select *ngIf="field.CtrlType=='CCB'" class="form-control" (change)="valueChanged($event.target.value)">
+            <option *ngFor="let item of FieldSource" [value]="item.Value">
+                {{item.Text}}
+            </option>
+        </select>
+
+        <input *ngIf="field.CtrlType=='CDT'" class="form-control" type="date" (input)="valueChanged($event.target.value)" />
+
+    </div>
+</div>
